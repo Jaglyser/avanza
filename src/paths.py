@@ -1,12 +1,9 @@
-
-
 BASE_URL = 'https://www.avanza.se'
 
 constants = {
     'paths': {},
     'public': {}
 }
-
 
 # Paths
 constants['paths']['POSITIONS_PATH'] = '/_mobile/account/positions'

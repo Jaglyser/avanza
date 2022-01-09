@@ -1,6 +1,6 @@
 from requests import get, Session
 from src.login import Login as ln
-from paths import constants, BASE_URL
+from src.paths import constants, BASE_URL
 
 
 class Calls:
@@ -21,6 +21,6 @@ class Calls:
 
     def getPositions(self):
         cookies = self.cookies
-        url = f"{BASE_URL}{constants['paths']['POSITION_PATHS']}"
+        url = f"{BASE_URL}{constants['paths']['POSITIONS_PATH']}"
         response = get(url, cookies=cookies).json()
         return response
