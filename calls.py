@@ -8,7 +8,8 @@ class Calls:
         self.cookies = ln.getCookie()
 
     def getOrderFlow(self, stock):
-        url = 'https://www.avanza.se/aktier/nya-dagens-avslut.html/%d' % stock
+        url = 'https://www.avanza.se/aktier/nya-dagens-avslut.html/{}'.format(
+            stock)
         cookies = self.cookies
         get(url, cookies=cookies)
 
