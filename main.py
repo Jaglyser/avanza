@@ -1,7 +1,7 @@
-from calls import Calls
+from src.calls import Calls
 
 calls = Calls()
 
-response = calls.getStockInfo("avanza")
+response = calls.getPositions()
 
 print(response)

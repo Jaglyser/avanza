@@ -1,6 +1,6 @@
 from requests import get, Session
-from login import Login as ln
-import json
+from src.login import Login as ln
+from paths import constants, BASE_URL
 
 
 class Calls:
@@ -15,7 +15,12 @@ class Calls:
 
     def getStockInfo(self, stock):
         cookies = self.cookies
-        url = 'https://www.avanza.se/_cqbe/search/global-search/global-search-template?query=%s' % stock
+        url = f"{BASE_URL}{constants['paths']['search']}"
         response = get(url, cookies=cookies).json()
-        # response_dict = json.loads(response.json())
+        return response
+
+    def getPositions(self):
+        cookies = self.cookies
+        url = f"{BASE_URL}{constants['paths']['POSITION_PATHS']}"
+        response = get(url, cookies=cookies).json()
         return response
