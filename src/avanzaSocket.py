@@ -1,54 +1,30 @@
-import asyncio
-from login import Login as ln
-from paths import constants, SOCKET_URL
 import websockets
+import asyncio
+from paths import SOCKET_URL
+from credentials import Credentials as cr
+from json import dumps
 
 
-class Socket:
+class AvanzaSocket:
     def __init__(self) -> None:
-        self.cookie = ln.getCookie()
-        self.socket = None
-        self.connectionStatus = False
+        self.url
+        self.cookie
+        self.credentials
+        self.socket
 
-    async def setup(self) -> None:
-        asyncio.ensure_future(self.createSocket())
-        await self.connectSocket()
+    async def handShake(self) -> None:
+        message = {
+            'test': 'test'
+        }
+        await self.send(message)
 
-    async def createSocket(self) -> None:
-        async with websockets.connect(SOCKET_URL, extra_headers={self.cookie}) as self.socket:
-            await self.socketMessage
+    async def initConnection(self) -> None:
+        self.url = SOCKET_URL
+        self.cookie = cr.loadCookie()
+        async with websockets.connect(self.url, extra_headers={self.cookie}) as self.socket:
+            await self.handShake
 
-    async def connectSocket():
-        timeout_count = 40
-        timeout_value = 0.250
-
-        for _ in range(0, timeout_count):
-            if self._connected:
-                return
-            await asyncio.sleep(timeout_value)
-
-        raise TimeoutError('\
-            We weren\'t able to connect \
-            to the websocket within the expected timeframe \
-        ')
-
-    async def socketMessage(self):
-        await self.__send({
-            'advice': {
-                'timeout': 60000,
-                'interval': 0
-            },
-            'channel': '/meta/handshake',
-            'ext': {'subscriptionId': self._push_subscription_id},
-            'minimumVersion': '1.0',
-            'supportedConnectionTypes': [
-                'websocket',
-                'long-polling',
-                'callback-polling'
-            ],
-            'version': '1.0'
-        })
-
-
-socket = Socket()
-await socket.createSocket()
+    async def send(self, message) -> dict:
+        self.socket.send(dumps(message))
+        response = self.socket.recv()
+        return response

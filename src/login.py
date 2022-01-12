@@ -3,7 +3,7 @@ from credentials import Credentials as cr
 
 
 class Login:
-    def getCookie():
+    def getCookie() -> dict:
         csid = cr.loadCookie()
         cookies = {
             'csid': csid
