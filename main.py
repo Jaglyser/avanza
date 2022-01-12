@@ -1,4 +1,4 @@
-from src.calls import Calls
+from calls import Calls
 
 calls = Calls()
 

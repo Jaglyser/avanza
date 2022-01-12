@@ -4,7 +4,6 @@ from paths import constants, BASE_URL
 
 
 class Calls:
-
     def __init__(self):
         self.cookies = ln.getCookie()
 
@@ -38,7 +37,7 @@ class Calls:
 
         url = f"{BASE_URL}{constants['paths']['AUTHENTICATION']}"
         response = post(url, data, cookies=self.cookies)
-        print(response.json())
+        print(response.json)
 
 
 calls = Calls()

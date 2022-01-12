@@ -6,11 +6,15 @@ from json import dumps
 
 
 class AvanzaSocket:
-    def __init__(self) -> None:
+    def __init__(self, credentials: dict) -> None:
         self.url
         self.cookie
-        self.credentials
+        self.credentials = credentials
         self.socket
+        self.connected = False
+
+    async def connect(self) -> None:
+        await self.initConnection()
 
     async def handShake(self) -> None:
         message = {

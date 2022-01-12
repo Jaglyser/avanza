@@ -5,8 +5,7 @@ from paths import SOCKET_URL
 from login import Login as ln
 from credentials import Credentials as cr
 import json
-import Session from requests
-
+from requests import Session
 message_count = 0
 
 
