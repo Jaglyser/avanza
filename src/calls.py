@@ -1,9 +1,10 @@
-from requests import get, Session
-from src.login import Login as ln
-from src.paths import constants, BASE_URL
+from requests import post, get, Session
+from login import Login as ln
+from paths import constants, BASE_URL
 
 
 class Calls:
+
     def __init__(self):
         self.cookies = ln.getCookie()
 
@@ -24,3 +25,21 @@ class Calls:
         url = f"{BASE_URL}{constants['paths']['POSITIONS_PATH']}"
         response = get(url, cookies=cookies).json()
         return response
+
+    def authenticate(self):
+        self._authenticationTimeout = 1440
+
+        cookies = self.cookies
+        data = {
+            'maxInactiveMinutes': self._authenticationTimeout,
+            'username': 'jaglyser',
+            'password': '4972Njej'
+        }
+
+        url = f"{BASE_URL}{constants['paths']['AUTHENTICATION']}"
+        response = post(url, data, cookies=self.cookies)
+        print(response.json())
+
+
+calls = Calls()
+calls.authenticate()

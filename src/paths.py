@@ -1,4 +1,5 @@
 BASE_URL = 'https://www.avanza.se'
+SOCKET_URL = 'wss://www.avanza.se/_push/cometd'
 
 constants = {
     'paths': {},
@@ -29,6 +30,7 @@ constants['paths']['HOME'] = '/hem/senaste.html'
 constants['paths']['FEED'] = '/_cqbe/campaign/feed'
 constants['paths']['ACCOUNTS'] = '/_cqbe/insights/customer/accounts'
 constants['paths']['INSIGHT'] = '/_cqbe/insights/?timePeriod={}'
+constants['paths']['AUTHENTICATION'] = '/_api/authentication/sessions/usercredentials'
 
 constants['paths']['WATCHLISTS_ADD_DELETE_PATH'] = '/_api/usercontent/watchlist/{}/orderbooks/{}'
 constants['paths']['ORDERBOOK_PATH'] = '/_mobile/order/?orderbookId={}'

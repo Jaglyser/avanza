@@ -1,5 +1,5 @@
 from requests import Session, get
-from src.credentials import Credentials as cr
+from credentials import Credentials as cr
 
 
 class Login:
